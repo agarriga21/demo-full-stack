@@ -1,0 +1,53 @@
+package com.practice.demo.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+		/*auth.inMemoryAuthentication()
+		.withUser("manager")
+		.password("123")
+		.roles("MANAGER")
+		.and()
+		.withUser("admin")
+		.password("123")
+		.roles("ADMIN")
+		.and()
+		.withUser("customer")
+		.password("123")
+		.roles("CUSTOMER");
+		*/
+	}
+	
+	protected void configure(HttpSecurity http) throws Exception{
+		/* http.authorizeRequests()
+		.antMatchers("/driver").hasRole("ADMIN")
+		.antMatchers("/product/{id}").hasRole("ADMIN")
+		.antMatchers("/product").permitAll()
+		.antMatchers("/driverlist").hasAnyRole("MANAGER","ADMIN")
+		.antMatchers("/cardrivers/{id}").hasAnyRole("MANAGER","ADMIN")
+		.antMatchers("/prodlist").hasAnyRole("CUSTOMER","ADMIN")
+		.antMatchers("/").permitAll()
+		.antMatchers("/hello-world").permitAll()
+		.antMatchers("/test").permitAll()
+		.and().formLogin();
+*/	}
+	@Bean
+	public PasswordEncoder getPwdEnCoder() {
+		return NoOpPasswordEncoder.getInstance();  //BCryptPasswordEncoder 
+		
+	}
+	
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+}
